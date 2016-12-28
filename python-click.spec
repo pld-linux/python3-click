@@ -8,7 +8,7 @@
 Summary:	A simple wrapper around optparse for powerful command line utilities
 Name:		python-%{module}
 Version:	6.3
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries/Python
 Source0:	https://pypi.python.org/packages/source/c/%{module}/%{module}-%{version}.tar.gz
