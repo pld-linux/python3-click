@@ -7,13 +7,13 @@
 %define 	module	click
 Summary:	A simple wrapper around optparse for powerful command line utilities
 Name:		python-%{module}
-Version:	6.3
-Release:	2
+Version:	6.7
+Release:	1
 License:	BSD
 Group:		Libraries/Python
-Source0:	https://pypi.python.org/packages/source/c/%{module}/%{module}-%{version}.tar.gz
-# Source0-md5:	2f171cdf12b8f2e284c224825f5e4634
-URL:		http://github.com/mitsuhiko/click
+Source0:	https://github.com/pallets/click/archive/%{version}.tar.gz
+# Source0-md5:	3cae45d064f341b3f373489d8f7745e9
+URL:		http://click.pocoo.org/
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
