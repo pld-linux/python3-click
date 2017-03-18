@@ -88,14 +88,14 @@ Dokumentacja do modułu Pythona click.
 %if %{with python2}
 %py_build
 %if %{with tests}
-PYTHONPATH=$(pwd) py.test-%{py_ver} tests --tb=long --verbose
+PYTHONPATH=$(pwd) %{__python} -m pytest tests --tb=long --verbose
 %endif
 %endif
 
 %if %{with python3}
 %py3_build
 %if %{with tests}
-LC_ALL=C.UTF-8 PYTHONPATH=$(pwd) py.test-%{py3_ver} tests --tb=long --verbose
+LC_ALL=C.UTF-8 PYTHONPATH=$(pwd) %{__python3} -m pytest tests --tb=long --verbose
 %endif
 %endif
 
