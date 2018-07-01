@@ -10,7 +10,7 @@ Summary:	A simple wrapper around optparse for powerful command line utilities
 Summary(pl.UTF-8):	Proste obudowanie optparse do tworzenia potężnych narzędzi linii poleceń
 Name:		python-%{module}
 Version:	6.7
-Release:	2
+Release:	3
 License:	BSD
 Group:		Libraries/Python
 Source0:	https://github.com/pallets/click/archive/%{version}.tar.gz
