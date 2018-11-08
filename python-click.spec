@@ -9,12 +9,12 @@
 Summary:	A simple wrapper around optparse for powerful command line utilities
 Summary(pl.UTF-8):	Proste obudowanie optparse do tworzenia potężnych narzędzi linii poleceń
 Name:		python-%{module}
-Version:	6.7
-Release:	4
+Version:	7.0
+Release:	1
 License:	BSD
 Group:		Libraries/Python
 Source0:	https://github.com/pallets/click/archive/%{version}.tar.gz
-# Source0-md5:	3cae45d064f341b3f373489d8f7745e9
+# Source0-md5:	1c000f4357bd04e49af568b51bc03c6a
 URL:		http://click.pocoo.org/
 %if %{with tests} && %(locale -a | grep -q '^C\.UTF-8$'; echo $?)
 BuildRequires:	glibc-localedb-all
@@ -23,11 +23,13 @@ BuildRequires:	glibc-localedb-all
 BuildRequires:	python-modules >= 2
 BuildRequires:	python-pytest
 BuildRequires:	python-setuptools
+%{?with_doc:BuildRequires:	python-pallets-sphinx-themes}
 %endif
 %if %{with python3}
 BuildRequires:	python3-modules >= 1:3.2
 BuildRequires:	python3-pytest
 BuildRequires:	python3-setuptools
+%{?with_doc:BuildRequires:	python3-pallets-sphinx-themes}
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
@@ -101,6 +103,7 @@ LC_ALL=C.UTF-8 PYTHONPATH=$(pwd) %{__python3} -m pytest tests --tb=long --verbos
 
 %if %{with doc}
 # click-specific code is not python3 ready
+PYTHONPATH=$(pwd) \
 %{__make} -C docs html \
 	SPHINXBUILD=sphinx-build-2
 %endif
@@ -123,17 +126,17 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc CHANGES LICENSE README
+%doc CHANGES.rst LICENSE.rst README.rst
 %{py_sitescriptdir}/%{module}
-%{py_sitescriptdir}/%{module}-%{version}-py*.egg-info
+%{py_sitescriptdir}/Click-%{version}-py*.egg-info
 %endif
 
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
-%doc CHANGES LICENSE README
+%doc CHANGES.rst LICENSE.rst README.rst
 %{py3_sitescriptdir}/%{module}
-%{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
+%{py3_sitescriptdir}/Click-%{version}-py*.egg-info
 %endif
 
 %if %{with doc}
