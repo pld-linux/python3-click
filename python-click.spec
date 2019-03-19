@@ -13,10 +13,13 @@ Version:	7.0
 Release:	1.1
 License:	BSD
 Group:		Libraries/Python
+#Source0Download: https://github.com/pallets/click/releases
+# TODO: use:
+#Source0:	https://github.com/pallets/click/archive/click-%{version}.tar.gz
 Source0:	https://github.com/pallets/click/archive/%{version}.tar.gz
 # Source0-md5:	1c000f4357bd04e49af568b51bc03c6a
 URL:		http://click.pocoo.org/
-%if %{with tests} && %(locale -a | grep -q '^C\.UTF-8$'; echo $?)
+%if %{with tests} && %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
 %if %{with python2}
