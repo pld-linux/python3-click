@@ -21,12 +21,12 @@ URL:		https://click.palletsprojects.com/
 BuildRequires:	glibc-localedb-all
 %endif
 %if %{with python2}
-BuildRequires:	python-modules >= 2
+BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-pytest
 BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-pytest
 BuildRequires:	python3-setuptools
 %endif
@@ -36,7 +36,7 @@ BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	sphinx-pdg-3
 BuildRequires:	python3-pallets-sphinx-themes
 %endif
-Requires:	python-modules >= 2
+Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,7 +57,7 @@ konfigurowalny, ale ma dobre ustawienia domyślne.
 Summary:	A simple wrapper around optparse for powerful command line utilities
 Summary(pl.UTF-8):	Proste obudowanie optparse do tworzenia potężnych narzędzi linii poleceń
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.5
 
 %description -n python3-%{module}
 click is a Python 3 package for creating beautiful command line
