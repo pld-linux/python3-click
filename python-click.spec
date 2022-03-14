@@ -9,6 +9,7 @@
 Summary:	A simple wrapper around optparse for powerful command line utilities
 Summary(pl.UTF-8):	Proste obudowanie optparse do tworzenia potężnych narzędzi linii poleceń
 Name:		python-%{module}
+# keep 7.x here for python2 support
 Version:	7.1.2
 Release:	3
 License:	BSD
@@ -33,8 +34,10 @@ BuildRequires:	python3-setuptools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
-BuildRequires:	sphinx-pdg-3
-BuildRequires:	python3-pallets-sphinx-themes
+BuildRequires:	sphinx-pdg-3 >= 2.4.4
+BuildRequires:	python3-pallets-sphinx-themes >= 1.2.3
+BuildRequires:	python3-sphinxcontrib-log-cabinet >= 1.0.1
+BuildRequires:	python3-sphinx_issues >= 1.2.0
 %endif
 Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
@@ -92,6 +95,7 @@ Dokumentacja do modułu Pythona click.
 
 %if %{with tests}
 LC_ALL=C.UTF-8 \
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 PYTHONPATH=$(pwd)/src \
 %{__python} -m pytest tests --tb=long --verbose
 %endif
@@ -101,6 +105,7 @@ PYTHONPATH=$(pwd)/src \
 %py3_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 PYTHONPATH=$(pwd)/src \
 %{__python3} -m pytest tests --tb=long --verbose
 %endif
