@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Proste obudowanie optparse do tworzenia potężnych narzędzi
 Name:		python-%{module}
 # keep 7.x here for python2 support
 Version:	7.1.2
-Release:	3
+Release:	4
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://github.com/pallets/click/releases
