@@ -28,6 +28,7 @@ BuildRequires:	sphinx-pdg-3 >= 2.4.4
 BuildRequires:	python3-pallets-sphinx-themes >= 1.2.3
 BuildRequires:	python3-sphinxcontrib-log-cabinet >= 1.0.1
 BuildRequires:	python3-sphinx_issues >= 1.2.0
+BuildRequires:	python3-sphinx_tabs
 %endif
 Requires:	python3-modules >= 1:3.7
 BuildArch:	noarch
