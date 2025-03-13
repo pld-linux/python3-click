@@ -3,23 +3,24 @@
 %bcond_without	doc	# Sphinx documentation
 %bcond_without	tests	# py.test tests
 
-%define 	module	click
+%define		module	click
 Summary:	A simple wrapper around optparse for powerful command line utilities
 Summary(pl.UTF-8):	Proste obudowanie optparse do tworzenia potężnych narzędzi linii poleceń
 Name:		python3-%{module}
-Version:	8.1.7
-Release:	3
+Version:	8.1.8
+Release:	1
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://github.com/pallets/click/releases
 Source0:	https://github.com/pallets/click/archive/%{version}/click-%{version}.tar.gz
-# Source0-md5:	737188c8cfef9dde3c0353f447e1f351
+# Source0-md5:	c852f08bfca336f5ad34604470aead93
 URL:		https://click.palletsprojects.com/
 %if %{with tests} && %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
 BuildRequires:	python3-modules >= 1:3.7
-BuildRequires:	python3-setuptools
+BuildRequires:	python3-build
+BuildRequires:	python3-installer
 %if %{with tests}
 %if "%{py3_ver}" == "3.7"
 BuildRequires:	python3-importlib_metadata
@@ -30,6 +31,7 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
 BuildRequires:	sphinx-pdg-3 >= 2.4.4
+BuildRequires:	python3-click
 BuildRequires:	python3-pallets-sphinx-themes >= 1.2.3
 BuildRequires:	python3-sphinxcontrib-log-cabinet >= 1.0.1
 BuildRequires:	python3-sphinx_issues >= 1.2.0
@@ -67,7 +69,7 @@ Dokumentacja do modułu Pythona click.
 %setup -q -n %{module}-%{version}
 
 %build
-%py3_build
+%py3_build_pyproject
 
 %if %{with tests}
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
@@ -84,16 +86,16 @@ PYTHONPATH=$(pwd)/src \
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%py3_install
+%py3_install_pyproject
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES.rst LICENSE.rst README.rst
+%doc CHANGES.rst LICENSE.txt README.md
 %{py3_sitescriptdir}/click
-%{py3_sitescriptdir}/click-%{version}-py*.egg-info
+%{py3_sitescriptdir}/click-%{version}.dist-info
 
 %if %{with doc}
 %files apidocs
