@@ -18,9 +18,10 @@ URL:		https://click.palletsprojects.com/
 %if %{with tests} && %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
-BuildRequires:	python3-modules >= 1:3.7
 BuildRequires:	python3-build
+BuildRequires:	python3-flit_core < 4
 BuildRequires:	python3-installer
+BuildRequires:	python3-modules >= 1:3.7
 %if %{with tests}
 %if "%{py3_ver}" == "3.7"
 BuildRequires:	python3-importlib_metadata
@@ -31,7 +32,6 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
 BuildRequires:	sphinx-pdg-3 >= 2.4.4
-BuildRequires:	python3-click
 BuildRequires:	python3-pallets-sphinx-themes >= 1.2.3
 BuildRequires:	python3-sphinxcontrib-log-cabinet >= 1.0.1
 BuildRequires:	python3-sphinx_issues >= 1.2.0
@@ -78,7 +78,8 @@ PYTHONPATH=$(pwd)/src \
 %endif
 
 %if %{with doc}
-PYTHONPATH=$(pwd)/src \
+%{__python3} -m zipfile -e build-3/*.whl build-3-doc
+PYTHONPATH=$(pwd)/build-3-doc \
 %{__make} -C docs html \
 	SPHINXBUILD=sphinx-build-3
 %endif
