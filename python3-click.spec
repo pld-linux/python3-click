@@ -7,13 +7,13 @@
 Summary:	A simple wrapper around optparse for powerful command line utilities
 Summary(pl.UTF-8):	Proste obudowanie optparse do tworzenia potężnych narzędzi linii poleceń
 Name:		python3-%{module}
-Version:	8.1.8
-Release:	2
+Version:	8.3.3
+Release:	1
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://github.com/pallets/click/releases
 Source0:	https://github.com/pallets/click/archive/%{version}/click-%{version}.tar.gz
-# Source0-md5:	c852f08bfca336f5ad34604470aead93
+# Source0-md5:	b349cf7a76018ff52185f26a9cd5b35b
 URL:		https://click.palletsprojects.com/
 %if %{with tests} && %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
@@ -80,8 +80,7 @@ PYTHONPATH=$(pwd)/src \
 %if %{with doc}
 %{__python3} -m zipfile -e build-3/*.whl build-3-doc
 PYTHONPATH=$(pwd)/build-3-doc \
-%{__make} -C docs html \
-	SPHINXBUILD=sphinx-build-3
+sphinx-build-3 -b html docs docs/_build/html
 %endif
 
 %install
